@@ -51,7 +51,7 @@ function getToken(arr){
         else if(delimeter == arr[i]){
             printToken("<delimeter>");
         }
-        else if(hasQuotes(arr[i]) || onlyNum(arr[i])){
+        else if(hasQuotes(arr[i]) || onlyNum(arr[i])){ 
             printToken("<value>");
         }
         else
