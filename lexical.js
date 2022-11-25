@@ -1,15 +1,14 @@
 let temp = "";
 let token_arr = [];
+let result = [];
 
+function lexical(){
 
-function bruh(){
-
-    const check = [" ", ";", "="];
+    const check = [" ", ";", "=", "+", "-", "/", '*'];
     const expressions = document.getElementById("inputStr").textContent;
     let expChar;
-    const lexeme_arr = [];
     let quoteChk = false;
-
+    let lexeme_arr = [];
     for(let i = 0; i < expressions.length; i++){
 
         expChar = expressions.charAt(i);
@@ -18,20 +17,17 @@ function bruh(){
         if(expChar == '"') quoteChk = !quoteChk; //toggle boolean
 
         if(quoteChk == false){
-            if(expressions.charAt(i+1) == ";" || expressions.charAt(i+1) == "=" )
-                addToList(lexeme_arr, temp);
-            else if(check.includes(expChar))
+            if(check.includes(expressions.charAt(i+1)) || check.includes(expressions.charAt(i)))
                 addToList(lexeme_arr, temp);
         }
     }
-    const result = lexeme_arr.filter(e => e); //remove empty strings
+    result = lexeme_arr.filter(e => e); //remove empty strings
     print(result);
     getToken(result);
 }
 
 function getToken(arr){
     document.getElementById("token").textContent = "";
-    let dict = {};
     const dataType = ['byte','short','int','long','float','double','boolean','char','String'];
     const operator_arith = ['+','-','*','/','%'];
     //const operator_unary = ['++','--', '!'];
@@ -39,26 +35,30 @@ function getToken(arr){
     //const operator_rel = ['==','!=','<','>','<=','>='];
     //const operator_lg = ['&&', '||'];
     const delimeter = ';';
-
+    token_arr = [];
     for(let i = 0; i < arr.length; i++){
         
         if(dataType.includes(arr[i])){
-            printToken("<data_type>");
+            token_arr.push("<data_type>");
+        }
+        else if(operator_arith.includes(arr[i])){
+            token_arr.push("<arithmetic_operator>");
         }
         else if(operator_asst.includes(arr[i])){
-            printToken("<assignment_operator>");
+            token_arr.push("<assignment_operator>");
         }
         else if(delimeter == arr[i]){
-            printToken("<delimeter>");
+            token_arr.push("<delimiter>");
         }
         else if(hasQuotes(arr[i]) || onlyNum(arr[i])){ 
-            printToken("<value>");
+            token_arr.push("<value>");
         }
         else
-            printToken("<identifier>");
+            token_arr.push("<identifier>");
         
     }
 
+    printToken(token_arr);
 }
 
 function onlyNum(s) {
@@ -78,5 +78,5 @@ function print(s){
 }
 
 function printToken(s){
-    document.getElementById("token").textContent += s;
+    document.getElementById("token").textContent = s;
 }

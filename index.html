@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="index.js"></script>
+        <script src="lexical.js"></script>
+        <script src="syntax.js"></script>
     </head>
     <body>
-        <textarea id="inputStr">String bruh = "b ruh asd ";</textarea>
-
+        <textarea id="inputStr">String bruh="bruha ka" + "bruh"</textarea>
+        <!-- int i=2+2-3; -->
         <textarea id="outputStr"></textarea>
         <br>
         <textarea id="token" cols="80"></textarea>
-        <button id="btn" type="button" onclick="bruh()">Click me</button>
+        <button id="btn" type="button" onclick="lexical()">Click me</button>
+
+        <textarea id="syntax" cols="80"></textarea>
+        <button id="stx" type="button" onclick="bruh()">Syntax </button>
     </body>
 </html> 
