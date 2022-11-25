@@ -4,7 +4,7 @@ let result = [];
 
 function lexical(){
 
-    const check = [" ", ";", "=", "+", "-", "/", '*'];
+    const check = [" ", ";", "=", "+", "-", "/", '*', '"'];
     const expressions = document.getElementById("inputStr").textContent;
     let expChar;
     let quoteChk = false;
