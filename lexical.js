@@ -5,7 +5,7 @@ let result = [];
 function lexical(){
 
     const check = [" ", ";", "=", "+", "-", "/", '*', '"'];
-    const expressions = document.getElementById("inputStr").textContent;
+    const expressions = document.getElementById("inputStr").value;
     let expChar;
     let quoteChk = false;
     let lexeme_arr = [];
