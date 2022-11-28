@@ -2,24 +2,31 @@ let temp = "";
 let token_arr = [];
 let result = [];
 
-function lexical(){
+function lexical_declaration(){
 
     const check = [" ", ";", "=", "+", "-", "/", '*', '"'];
     const expressions = document.getElementById("inputStr").value;
     let expChar;
     let quoteChk = false;
-    let lexeme_arr = [];
+    lexeme_arr = [];
+    result = [];
+    
     for(let i = 0; i < expressions.length; i++){
 
-        expChar = expressions.charAt(i);
+        expChar = expressions.charAt(i); 
         temp+=expChar;
         
         if(expChar == '"') quoteChk = !quoteChk; //toggle boolean
 
-        if(quoteChk == false){
+        if(i == expressions.length-1){
+            addToList(lexeme_arr, temp);
+        }
+        else if(quoteChk == false){
             if(check.includes(expressions.charAt(i+1)) || check.includes(expressions.charAt(i)))
                 addToList(lexeme_arr, temp);
         }
+        
+        
     }
     result = lexeme_arr.filter(e => e); //remove empty strings
     print(result);

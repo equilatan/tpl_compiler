@@ -1,5 +1,6 @@
 
-function bruh(){
+
+function syntax_declaration(){
     
     let i = 0;
     let pattern_1 = ['<data_type>','<identifier>','<delimiter>'];
